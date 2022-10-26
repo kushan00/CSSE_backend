@@ -1,44 +1,52 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const connectDB = require('./src/config/db');
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
-// Middleware
 dotenv.config();
+
 const app = express();
-app.use(cors({ origin: true, credentials: true }));
+
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    credentials:true
+  })
+);
 
-// Establishing the database connection
-connectDB();
+const PORT = process.env.PORT || 5000;
 
-// Default Path
-app.route('/').get((req, res) => {
-    res.send('CSSE Procurement for Construction Implementation');
-});
+app.listen(PORT, () => console.log(`Server successfully  started on : ${PORT}`));
+
+
+
+mongoose.connect(
+  process.env.DB_LINK,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
+  (err) => {
+    if (err) return console.error(err);
+    console.log("Successfully Connected to MongoDB");
+  }
+);
+
 
 //import routes
-const userAPI = require('./src/api/user.api');
-const orderAPI = require('./src/api/order.api');
-const quotationAPI = require('./src/api/quotation.api');
-const invoiceAPI = require('./src/api/invoice.api');
-const deliveryAPI = require('./src/api/delivery.api');
-const paymentAPI = require('./src/api/payment.api');
+const User = require("./routes/userRoutes");
+const Requsition = require("./routes/RequsitionsRoutes");
+const Orders = require("./routes/OrdersRoutes");
+const Invoice = require("./routes/InvoiceRoutes");
+const Payment = require("./routes/PaymentRoutes");
 
-// Define routes
-app.use('/user', userAPI());
-app.use('/order', orderAPI());
-app.use('/quotation', quotationAPI());
-app.use('/invoice', invoiceAPI());
-app.use('/delivery', deliveryAPI());
-app.use('/payment', paymentAPI());
-
-// Start listening to the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is up and running on PORT ${PORT}`);
-})
-
-module.exports = app;
+//User management routes
+app.use("/user",User);
+app.use("/requsition",Requsition);
+app.use("/order",Orders);
+app.use("/invoice",Invoice);
+app.use("/payment",Payment);
