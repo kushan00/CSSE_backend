@@ -1,2 +1,1 @@
-
-***CSSE BACKEND Procurement Construction Industry
+CSSE BACKEND Procurement Construction Industry
