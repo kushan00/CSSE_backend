@@ -24,6 +24,28 @@ const getRequsitions = async (req, res) => {
     }
     };
 
+    
+const getRequsitionById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      // const Requsition = await RequsitionModel.findById(id);
+      const Requsition = await RequsitionModel.find({"_id":id})
+        .populate({
+          path: "site_manager_id",
+          select: "user_Id fullName email mobileno",
+        }).populate({
+          path: "Supplier_detils",
+          select: "user_Id fullName email mobileno",
+        });
+
+      apiResponse.Success(res, "Requsition", { Requsition: Requsition });
+  } catch (err) {
+      console.error(err.message);
+      apiResponse.ServerError(res, "Server Error", { err: err });
+  }
+}
+
 const getRequsitionToSiteManager = async (req, res) => {
     const { id } = req.params;
 
@@ -145,4 +167,4 @@ const deleteRequsition = async (req, res) => {
     apiResponse.Success(res, "Requsition Deleted", {});
 }
 
-module.exports = { getRequsitionToSiteManager , getRequsitionToSupplier,updateRequsitionStatus, getRequsitions, createRequsition, updateRequsition, deleteRequsition };
+module.exports = {getRequsitionById, getRequsitionToSiteManager , getRequsitionToSupplier,updateRequsitionStatus, getRequsitions, createRequsition, updateRequsition, deleteRequsition };

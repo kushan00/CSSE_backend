@@ -15,7 +15,7 @@ const RequsitionSchema = new mongoose.Schema({
     },
     Supplier_detils: {
         type: mongoose.Schema.Types.ObjectId,
-             required: true,
+        required: true,
         ref: "user",
     },
     site_manager_id: {
