@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const { getRequsitionToSiteManager , getRequsitionToSupplier,updateRequsitionStatus, getRequsitions, createRequsition, updateRequsition, deleteRequsition } = require("../Controllers/RequsitionsController");
+const {getRequsitionById, getRequsitionToSiteManager , getRequsitionToSupplier,updateRequsitionStatus, getRequsitions, createRequsition, updateRequsition, deleteRequsition } = require("../Controllers/RequsitionsController");
 
 router.post("/createRequsition",createRequsition);
 router.get("/getAllRequsitions",getRequsitions);
+router.get("/getRequsitionById/:id",getRequsitionById)
 router.get("/getRequsitionBySiteManagerId/:id",getRequsitionToSiteManager);
 router.get("/getRequsitionBySupplier/:id",getRequsitionToSupplier);
 router.put("/getRequsitionByStatus/:id",updateRequsitionStatus);
