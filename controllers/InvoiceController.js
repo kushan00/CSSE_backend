@@ -8,7 +8,7 @@ const InvoiceModel = require("../models/invoiceModel");
     try {
         const Invoices = await InvoiceModel.find()
         .populate({
-            path: "invoice_Id",
+            path: "order_Id",
         })
         .populate({
             path: "created_supplier_id",
@@ -35,7 +35,7 @@ const InvoiceModel = require("../models/invoiceModel");
     try {
         const Invoice = await InvoiceModel.find({"site_manager_id":id})
         .populate({
-            path: "invoice_Id",
+            path: "order_Id",
         })
         .populate({
             path: "created_supplier_id",
@@ -57,7 +57,7 @@ const getInvoicesToSupplier = async (req, res) => {
     try {
         const Invoice = await InvoiceModel.find({"created_supplier_id":id})
         .populate({
-            path: "invoice_Id",
+            path: "order_Id",
         })
         .populate({
             path: "created_supplier_id",
