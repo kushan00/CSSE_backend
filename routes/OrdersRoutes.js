@@ -7,7 +7,7 @@ const {getOrdersToSitemanager,getOrdersToSupplier , getOrdersMoreThanOneLak , ge
 
 router.post("/createOrder",createOrder);
 router.get("/getAllOrders",getOrders);
-router.get("/getOrderBy-Id",getOrderById);
+router.get("/getOrderBy-Id/:id",getOrderById);
 router.get("/getOrdersMoreThanOneLak",getOrdersMoreThanOneLak);
 router.get("/getOrdersLessThanOneLak",getOrdersLessThanOneLak);
 router.get("/getOrderBySiteManagerId/:id",getOrdersToSitemanager);
