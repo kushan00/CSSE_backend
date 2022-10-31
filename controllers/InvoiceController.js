@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const apiResponse = require("../helpers/apiResponse");
 const uniqueID = require("../helpers/uniqueID");
-const InvoiceModel = require("../models/invoiceModel");
+const InvoiceModel = require("../models/invoiceModel"); 
 
  const getInvoices = async (req, res) => { 
     try {

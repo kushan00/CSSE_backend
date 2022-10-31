@@ -157,16 +157,13 @@ var debug = true, verifySSL = false;
 
   const updateUser = async (req, res) => {
     const { id } = req.params;
-    const { fullName, mobileno, email , dateOfBirth ,  weight ,height  } = req.body;
+    const { fullName, mobileno, email    } = req.body;
 
     const filter = { _id: id };
     const update = { 
         fullName: fullName,
         mobileno:mobileno,
-        email : email,
-        dateOfBirth : dateOfBirth,
-        weight : weight,
-        height : height      
+        email : email, 
         };
 
     try {
