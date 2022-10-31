@@ -4,6 +4,24 @@ const apiResponse = require("../helpers/apiResponse");
 const uniqueID = require("../helpers/uniqueID");
 const OrderModel = require("../models/orderModel");
 
+
+const getOrderById = async (req, res) => {
+    const { id } = req.params;
+  
+    try {
+        // const Requsition = await RequsitionModel.findById(id);
+        const Order = await OrderModel.find({"_id":id})
+          .populate({
+            path: "PR_Id",            
+          });
+  
+        apiResponse.Success(res, "Order", { Requsition: Order });
+    } catch (err) {
+        console.error(err.message);
+        apiResponse.ServerError(res, "Server Error", { err: err });
+    }
+  }
+
  const getOrders = async (req, res) => { 
     try {
         const Orders = await OrderModel.find()
@@ -178,4 +196,4 @@ const updateOrderStatus = async (req, res) => {
     apiResponse.Success(res,"Order Deleted", {});
 }
 
-module.exports = {getOrdersToSitemanager,getOrdersToSupplier ,getOrdersMoreThanOneLak  , getOrdersLessThanOneLak, updateOrderStatus, getOrders, deleteOrder, createOrder, updateOrder};
+module.exports = {getOrdersToSitemanager,getOrdersToSupplier,getOrderById ,getOrdersMoreThanOneLak  , getOrdersLessThanOneLak, updateOrderStatus, getOrders, deleteOrder, createOrder, updateOrder};
