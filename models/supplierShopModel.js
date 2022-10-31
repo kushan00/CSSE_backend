@@ -9,7 +9,7 @@ const supplierShopSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	Locaion: {
+	Location: {
 		type: String,
 		required: true,
 	},

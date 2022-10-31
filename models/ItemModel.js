@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const ItemSchema = new mongoose.Schema({
-    item_Id: {
+	item_Id: {
 		type: String,
 		required: true,
 	},
@@ -13,24 +13,24 @@ const ItemSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-    supplier_Id: {
+	supplier_Id: {
 		type: mongoose.Schema.Types.ObjectId,
-      required: true,
-        ref: "user",
-    },
-    type: {
+		required: true,
+		ref: "supplierShop",
+	},
+	type: {
 		type: String,
 		required: true,
 	},
 	available_quantity: {
 		type: String,
-        default:null
+		default: null
 	},
 
 },
-{
-    timestamps: true,
-}
+	{
+		timestamps: true,
+	}
 );
 
 module.exports = Item = mongoose.model("Item", ItemSchema);

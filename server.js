@@ -45,6 +45,7 @@ const Invoice = require("./routes/InvoiceRoutes");
 const Payment = require("./routes/PaymentRoutes");
 const Item = require ("./routes/ItemRoutes");
 const SupplierShop = require ("./routes/SupplierShopRoutes");
+const Card = require ("./routes/cardRoutes");
 
 //User management routes
 app.use("/user",User);
@@ -54,3 +55,4 @@ app.use("/invoice",Invoice);
 app.use("/payment",Payment);
 app.use("/item",Item);
 app.use("/supplierShop",SupplierShop);
+app.use("/card",Card);
