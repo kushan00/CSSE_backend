@@ -121,7 +121,7 @@ const getPaymentToFinancal = async (req, res) => {
 
     //generate Invoice id
     const payment_Id = await uniqueID.generatepaymentID();
-    newInvoice.payment_Id = payment_Id;
+    payment.payment_Id = payment_Id;
 
     const newPayment = new paymentModel({ ...payment })
     console.log("Saved data",newPayment);
