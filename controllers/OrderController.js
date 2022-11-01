@@ -96,6 +96,12 @@ const getOrdersToSitemanager = async (req, res) => {
   try {
     const order = await OrderModel.find({ site_manager_id: id }).populate({
       path: "PR_Id",
+    })
+    .populate({
+      path: "Supplier_detils",
+    })
+    .populate({
+      path: "site_manager_id",
     });
 
     apiResponse.Success(res, "order", { order: order });
@@ -111,6 +117,12 @@ const getOrdersToSupplier = async (req, res) => {
   try {
     const order = await OrderModel.find({ Supplier_detils: id }).populate({
       path: "PR_Id",
+    })
+    .populate({
+      path: "Supplier_detils",
+    })
+    .populate({
+      path: "site_manager_id",
     });
 
     apiResponse.Success(res, "order", { order: order });
