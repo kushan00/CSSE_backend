@@ -50,6 +50,11 @@ const getOrdersMoreThanOneLak = async (req, res) => {
   try {
     const Orders = await OrderModel.find().populate({
       path: "PR_Id",
+    })      .populate({
+      path: "Supplier_detils",
+    })
+    .populate({
+      path: "site_manager_id",
     });
     console.log("Orders", Orders);
     var morethanorders = [];
@@ -72,6 +77,12 @@ const getOrdersLessThanOneLak = async (req, res) => {
   try {
     const Orders = await OrderModel.find().populate({
       path: "PR_Id",
+    })
+    .populate({
+      path: "Supplier_detils",
+    })
+    .populate({
+      path: "site_manager_id",
     });
     console.log("Orders", Orders);
     var morethanorders = [];
