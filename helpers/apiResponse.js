@@ -1,3 +1,4 @@
+//send all responses in one format
 
 const response = (res, statusCode, status, message, data = null) => {
 
