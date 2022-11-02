@@ -1,5 +1,7 @@
 const uniqid = require('uniqid'); 
 
+//generate unique IDs for all insert models
+
 exports.generateID = async ()=>{
 
     //var id_1 = await uniqid.process();    /**create a 12 digit id with current time and some strings */

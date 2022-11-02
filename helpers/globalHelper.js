@@ -1,3 +1,4 @@
+//check email validation
 exports.checkValidEmail = (email) => {
     const regexEmail = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
     if (!regexEmail.test(email)) {
@@ -7,6 +8,7 @@ exports.checkValidEmail = (email) => {
     }
 }
 
+//check mobile no validation
 exports.checkValidMobileNo = (mobileno) => {
     const regexPhoneNumber = /^((\+)94)[1-9](\d{2}){4}$/;
     if (!mobileno.match(regexPhoneNumber)) {
