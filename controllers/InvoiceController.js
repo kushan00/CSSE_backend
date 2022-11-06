@@ -24,6 +24,27 @@ const InvoiceModel = require("../models/invoiceModel");
     }
  }
 
+ const getInvoicesById = async (req, res) => { 
+    const { id } = req.params;
+
+    try {
+        const Invoice = await InvoiceModel.find({"_id":id})
+        .populate({
+            path: "order_Id",
+        })
+        .populate({
+            path: "created_supplier_id",
+        })
+        .populate({
+            path: "site_manager_id",
+        });
+        
+        apiResponse.Success(res,"Invoice",{ Invoice: Invoice })
+    } catch (err) {
+        console.error(err.message);
+        apiResponse.ServerError(res,"Server Error",{err:err});
+    }
+}
 
 
 
@@ -135,4 +156,4 @@ const getInvoicesToSupplier = async (req, res) => {
     apiResponse.Success(res,"Invoice Deleted", {});
 }
 
-module.exports = {getInvoicesToSitemanager,getInvoicesToSupplier , getInvoices, deleteInvoice, createInvoice, updateInvoice};
+module.exports = {getInvoicesToSitemanager,getInvoicesById,getInvoicesToSupplier , getInvoices, deleteInvoice, createInvoice, updateInvoice};

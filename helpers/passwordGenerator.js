@@ -1,5 +1,6 @@
 const uniqid = require('uniqid'); 
 
+//password generator for users
 exports.generateRandomPassword = async ()=>{
 
     var id_2 = Math.floor(1000 + Math.random() * 9000); /**generate 4 digit random number  */

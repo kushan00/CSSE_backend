@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 
 var jwtSecret = "mysecrettoken";
 
+//jwt token decoder to check validate user
+
 module.exports = function (req, res, next) {
 	//Get token from header
 	//const token = req.header("x-auth-token");
